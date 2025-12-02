@@ -7,8 +7,14 @@ require('dotenv').config();
 
 // Conectar a MongoDB
 mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+  });
+// Verificar conexión
+mongoose.connection.on('connected', () => {
+    console.log('✅ Conectado a MongoDB exitosamente');
+});
+
+mongoose.connection.on('error', (err) => {
+    console.log('❌ Error de conexión a MongoDB:', err);
 });
 
 // Middleware (ayudantes para el servidor)
