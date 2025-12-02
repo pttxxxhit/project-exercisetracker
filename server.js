@@ -26,10 +26,12 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
 });
+const PORT = process.env.PORT || 3001;
 
-const listener = app.listen(process.env.PORT || 3000, () => {
-    console.log('Your app is listening on port ' + listener.address().port);
+app.listen(PORT, () => {
+    console.log(`Your app is listening on port ${PORT}`);
 });
+
 // Esquema de Usuario
 const userSchema = new mongoose.Schema({
     username: {
